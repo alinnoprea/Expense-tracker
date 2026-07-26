@@ -43,7 +43,8 @@ fun BudgetCard(
     budgetLimit: Double,
     currentLanguage: AppLanguage,
     onEditBudgetClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    currency: String = "USD"
 ) {
     val progress = if (budgetLimit > 0) (currentMonthSpent / budgetLimit).coerceIn(0.0, 1.0).toFloat() else 0f
     val percentage = if (budgetLimit > 0) ((currentMonthSpent / budgetLimit) * 100).toInt() else 0
@@ -110,7 +111,7 @@ fun BudgetCard(
                             )
                         )
                         Text(
-                            text = "${String.format(Locale.US, "%.0f", currentMonthSpent)} ${Translations.get("spent_of", currentLanguage)} ${String.format(Locale.US, "%.0f RON", budgetLimit)}",
+                            text = "${String.format(Locale.US, "%.0f", currentMonthSpent)} ${Translations.get("spent_of", currentLanguage)} ${String.format(Locale.US, "%.0f %s", budgetLimit, currency)}",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 fontSize = 11.sp
@@ -179,7 +180,7 @@ fun BudgetCard(
                 )
 
                 Text(
-                    text = "${Translations.get("budget_remaining", currentLanguage)}: ${String.format(Locale.US, "%.2f RON", remaining)}",
+                    text = "${Translations.get("budget_remaining", currentLanguage)}: ${String.format(Locale.US, "%.2f %s", remaining, currency)}",
                     style = MaterialTheme.typography.labelMedium.copy(
                         fontWeight = FontWeight.Bold,
                         color = if (remaining > 0) SageForest else Color(0xFFD32F2F)

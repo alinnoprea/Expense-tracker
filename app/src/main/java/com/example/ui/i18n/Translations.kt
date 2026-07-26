@@ -242,6 +242,79 @@ object Translations {
         "ad_desc" to mapOf(
             AppLanguage.EN to "Track savings & discover personalized deals.",
             AppLanguage.RO to "Urmărește economiile și descoperă oferte speciale."
+        ),
+        // Welcome Onboarding
+        "welcome_title" to mapOf(
+            AppLanguage.EN to "Welcome to Expense Tracker",
+            AppLanguage.RO to "Bine ai venit la Tracker Cheltuieli"
+        ),
+        "welcome_subtitle" to mapOf(
+            AppLanguage.EN to "Set up your preferences to personalize your financial tracking experience.",
+            AppLanguage.RO to "Configurează-ți preferințele pentru o experiență financiară personalizată."
+        ),
+        "select_language" to mapOf(
+            AppLanguage.EN to "App Language",
+            AppLanguage.RO to "Limba Aplicației"
+        ),
+        "preferred_currency" to mapOf(
+            AppLanguage.EN to "Preferred Currency",
+            AppLanguage.RO to "Moneda Preferată"
+        ),
+        "monthly_budget_setup" to mapOf(
+            AppLanguage.EN to "Initial Monthly Budget",
+            AppLanguage.RO to "Buget Lunar Inițial"
+        ),
+        "get_started" to mapOf(
+            AppLanguage.EN to "Get Started",
+            AppLanguage.RO to "Începe Acum"
+        ),
+        "quick_presets" to mapOf(
+            AppLanguage.EN to "Quick Presets",
+            AppLanguage.RO to "Presetări Rapide"
+        ),
+        "step_1_of_3" to mapOf(
+            AppLanguage.EN to "Step 1 of 3",
+            AppLanguage.RO to "Pasul 1 din 3"
+        ),
+        "step_2_of_3" to mapOf(
+            AppLanguage.EN to "Step 2 of 3",
+            AppLanguage.RO to "Pasul 2 din 3"
+        ),
+        "step_3_of_3" to mapOf(
+            AppLanguage.EN to "Step 3 of 3",
+            AppLanguage.RO to "Pasul 3 din 3"
+        ),
+        "step_language_subtitle" to mapOf(
+            AppLanguage.EN to "Choose your preferred language for the application interface.",
+            AppLanguage.RO to "Alege limba preferată pentru interfața aplicației."
+        ),
+        "step_currency_title" to mapOf(
+            AppLanguage.EN to "Select Preferred Currency",
+            AppLanguage.RO to "Selectează Moneda Preferată"
+        ),
+        "step_currency_subtitle" to mapOf(
+            AppLanguage.EN to "Choose the currency used to display all balances and transactions.",
+            AppLanguage.RO to "Alege moneda folosită pentru afișarea soldurilor și tranzacțiilor."
+        ),
+        "step_budget_title" to mapOf(
+            AppLanguage.EN to "Set Monthly Spending Target",
+            AppLanguage.RO to "Setează Bugetul Lunar de Cheltuieli"
+        ),
+        "step_budget_subtitle" to mapOf(
+            AppLanguage.EN to "Establish a monthly spending limit to keep your finances on track.",
+            AppLanguage.RO to "Stabilește o limită lunară de cheltuieli pentru a-ți menține finanțele sub control."
+        ),
+        "next" to mapOf(
+            AppLanguage.EN to "Next",
+            AppLanguage.RO to "Următorul"
+        ),
+        "back" to mapOf(
+            AppLanguage.EN to "Back",
+            AppLanguage.RO to "Înapoi"
+        ),
+        "finish" to mapOf(
+            AppLanguage.EN to "Finish & Get Started",
+            AppLanguage.RO to "Finalizează și Începe"
         )
     )
 

@@ -73,7 +73,22 @@ fun HomeScreen(
     viewModel: ExpenseViewModel,
     modifier: Modifier = Modifier
 ) {
+    val isWelcomeCompleted by viewModel.isWelcomeCompleted.collectAsStateWithLifecycle()
     val language by viewModel.language.collectAsStateWithLifecycle()
+    val preferredCurrency by viewModel.preferredCurrency.collectAsStateWithLifecycle()
+
+    if (!isWelcomeCompleted) {
+        WelcomeScreen(
+            initialLanguage = language,
+            initialCurrency = preferredCurrency,
+            initialBudget = viewModel.monthlyBudgetLimit.value,
+            onCompleteWelcome = { lang, curr, budget ->
+                viewModel.completeWelcome(lang, curr, budget)
+            }
+        )
+        return
+    }
+
     val filteredExpenses by viewModel.filteredExpenses.collectAsStateWithLifecycle()
     val totalAmount by viewModel.totalExpensesAmount.collectAsStateWithLifecycle()
     val categoryTotals by viewModel.categoryTotals.collectAsStateWithLifecycle()
@@ -307,7 +322,8 @@ fun HomeScreen(
                         entryCount = filteredExpenses.size,
                         topCategoryKey = topCategoryKey,
                         averageAmount = averageAmount,
-                        currentLanguage = language
+                        currentLanguage = language,
+                        currency = preferredCurrency
                     )
                 }
 
@@ -317,7 +333,8 @@ fun HomeScreen(
                         currentMonthSpent = currentMonthTotalAmount,
                         budgetLimit = monthlyBudgetLimit,
                         currentLanguage = language,
-                        onEditBudgetClick = { viewModel.openBudgetDialog() }
+                        onEditBudgetClick = { viewModel.openBudgetDialog() },
+                        currency = preferredCurrency
                     )
                 }
 
@@ -417,7 +434,8 @@ fun HomeScreen(
             currentBudget = monthlyBudgetLimit,
             currentLanguage = language,
             onDismiss = { viewModel.closeBudgetDialog() },
-            onConfirm = { newLimit -> viewModel.setMonthlyBudget(newLimit) }
+            onConfirm = { newLimit -> viewModel.setMonthlyBudget(newLimit) },
+            currency = preferredCurrency
         )
     }
 

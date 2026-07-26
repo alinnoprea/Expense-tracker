@@ -27,7 +27,18 @@ class ExpenseViewModel(application: Application) : AndroidViewModel(application)
         repository = ExpenseRepository(expenseDao)
     }
 
-    val language = MutableStateFlow(AppLanguage.RO) // Default to Romanian
+    private fun loadSavedLanguage(): AppLanguage {
+        val saved = prefs.getString("app_language", AppLanguage.EN.name)
+        return try {
+            AppLanguage.valueOf(saved ?: AppLanguage.EN.name)
+        } catch (e: Exception) {
+            AppLanguage.EN
+        }
+    }
+
+    val language = MutableStateFlow(loadSavedLanguage())
+    val preferredCurrency = MutableStateFlow(prefs.getString("preferred_currency", "USD") ?: "USD")
+    val isWelcomeCompleted = MutableStateFlow(prefs.getBoolean("welcome_completed", false))
 
     val selectedCategoryFilter = MutableStateFlow<String?>(null)
     val searchQuery = MutableStateFlow("")
@@ -140,11 +151,26 @@ class ExpenseViewModel(application: Application) : AndroidViewModel(application)
     )
 
     fun toggleLanguage() {
-        language.value = if (language.value == AppLanguage.EN) AppLanguage.RO else AppLanguage.EN
+        val newLang = if (language.value == AppLanguage.EN) AppLanguage.RO else AppLanguage.EN
+        setLanguage(newLang)
     }
 
     fun setLanguage(lang: AppLanguage) {
         language.value = lang
+        prefs.edit().putString("app_language", lang.name).apply()
+    }
+
+    fun setPreferredCurrency(currency: String) {
+        preferredCurrency.value = currency
+        prefs.edit().putString("preferred_currency", currency).apply()
+    }
+
+    fun completeWelcome(lang: AppLanguage, currency: String, budgetLimit: Double) {
+        setLanguage(lang)
+        setPreferredCurrency(currency)
+        setMonthlyBudget(budgetLimit)
+        isWelcomeCompleted.value = true
+        prefs.edit().putBoolean("welcome_completed", true).apply()
     }
 
     fun setCategoryFilter(categoryKey: String?) {
@@ -193,7 +219,7 @@ class ExpenseViewModel(application: Application) : AndroidViewModel(application)
         categoryKey: String,
         dateMillis: Long,
         description: String,
-        currency: String = "RON",
+        currency: String = preferredCurrency.value,
         receiptUri: String? = null
     ) {
         viewModelScope.launch {

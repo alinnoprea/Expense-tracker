@@ -34,7 +34,8 @@ fun EditBudgetDialog(
     currentBudget: Double,
     currentLanguage: AppLanguage,
     onDismiss: () -> Unit,
-    onConfirm: (newBudget: Double) -> Unit
+    onConfirm: (newBudget: Double) -> Unit,
+    currency: String = "USD"
 ) {
     var budgetText by remember {
         mutableStateOf(
@@ -55,7 +56,7 @@ fun EditBudgetDialog(
         text = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "${Translations.get("budget_limit", currentLanguage)} (RON)",
+                    text = "${Translations.get("budget_limit", currentLanguage)} ($currency)",
                     style = MaterialTheme.typography.labelMedium.copy(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

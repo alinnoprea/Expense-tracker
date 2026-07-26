@@ -47,7 +47,8 @@ fun ExpenseDashboardCard(
     topCategoryKey: String?,
     averageAmount: Double,
     currentLanguage: AppLanguage,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    currency: String = "USD"
 ) {
     Card(
         modifier = modifier
@@ -107,7 +108,7 @@ fun ExpenseDashboardCard(
                         .padding(horizontal = 10.dp, vertical = 4.dp)
                 ) {
                     Text(
-                        text = "RON",
+                        text = currency,
                         style = MaterialTheme.typography.labelMedium.copy(
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -120,7 +121,7 @@ fun ExpenseDashboardCard(
 
             // Total Amount Display
             Text(
-                text = String.format(Locale.US, "%.2f RON", totalAmount),
+                text = String.format(Locale.US, "%.2f %s", totalAmount, currency),
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 32.sp,
