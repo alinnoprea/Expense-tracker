@@ -1,0 +1,6 @@
+{
+  "name": "Expense Tracker",
+  "description": "A modern organic expense tracker app with monthly budgeting & spending limits, receipt photo attachments, dynamic analytics dashboard, English and Romanian language toggle, and local Room persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
